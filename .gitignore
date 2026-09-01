@@ -1,4 +1,0 @@
-var/
-__pycache__/
-*.pyc
-vendor/**/__pycache__/
