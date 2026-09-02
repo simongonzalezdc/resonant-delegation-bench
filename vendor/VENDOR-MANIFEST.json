@@ -41,8 +41,8 @@
     "method": "git archive 525fa1e -- bench fixtures judges oracles research tests DESIGN.md README.md llms.txt (committed tree; working-tree-local edits NOT vendored)",
     "name": "delegation-bench",
     "urls": [
-      "https://git.kyanitelabs.tech/simon/delegation-bench"
+      "https://github.com/KyaniteLabs/delegation-bench.git"
     ],
-    "vendor": "simon (git.kyanitelabs.tech)"
+    "vendor": "KyaniteLabs"
   }
 }
