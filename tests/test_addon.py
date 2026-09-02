@@ -211,8 +211,12 @@ class TestAdversarial(unittest.TestCase):  # A6
         with Service():
             big = json.dumps({"method": "delegationbench.run", "params": {
                 "cell": "C1-S", "run_id": "x" * 100000}}).encode()
-            code, _ = post_err(None, raw=big)
-            self.assertEqual(code, 413)
+            try:
+                post(None, raw=big)
+                self.fail("oversized body must not succeed")
+            except urllib.error.HTTPError as exc:
+                self.assertEqual(exc.code, 413)
+                self.assertEqual(exc.headers.get("Connection"), "close")  # advertised, not silent
 
     def test_unknown_run_id_404(self):
         with Service():
