@@ -1,0 +1,48 @@
+{
+  "files": {
+    "DESIGN.md": "3c419f8989688f8d653e48576bf0ae05088929128da8e10b52a9ba76cfe990c3",
+    "README.md": "842a800f30d00f522b56b03d17100bceb595a71a894478fde5bcf439d78547dd",
+    "bench/runner.py": "6a63b8ba0cd2cf7b5c3eeb8694c9fae5066f9322c67bace71ee424b766d33ad7",
+    "bench/seal.py": "437b1b780a99466933ff391679d459a3f893a5898b763f7a39bba50c004c1e7e",
+    "bench/stats.py": "2bcf27f6157ffd33f43f239b44d7807e6a982f40aac49f958c4875cdadf50765",
+    "fixtures/dev/C1-AMBIG.json": "2c2376a05013e7dcf03b5735ed7b7260634231cab4cab1fc638fab3dd9943f70",
+    "fixtures/dev/C1-L1-0.json": "e9f7c5cce0fb0d6168dd3ec0393ca3ac46ee144b3694e973e107f811fccf429a",
+    "fixtures/dev/C1-L1-1.json": "fe78405f29dde761498d634f012bbf4d130d24f892aa06b529ec39207cde8a9f",
+    "fixtures/dev/C1-L1-2.json": "4125ff3d6d5a0838a7a4140e9804be444ca42775f5f4e00f3f7f0a8d0371bf29",
+    "fixtures/dev/C1-L3-3.json": "86ca2ee34b58f87e30de7120e6bbc3e0968b61cf2b2e54105bc2d1bf93b9cb1a",
+    "fixtures/dev/C1-L3-4.json": "b7befed78259f61f566343d28ffca2155339727412f7d08651f78f54482e3b80",
+    "fixtures/dev/C1-L3-5.json": "22cfc63cd110d82c41a4201afabcefe895b6238c3e46f90a824f0a0b8bd0522a",
+    "fixtures/dev/C1-L8-6.json": "65ed5bf0c537d192117c563f60585087ade992e86d4bb2ecbf251818e90fcc2d",
+    "fixtures/dev/C1-L8-7.json": "ff948ec06d07db7da0ce45e0841a4977c1d661c37b67576f224322db3eec253e",
+    "fixtures/dev/C1-L8-8.json": "ab177d86ab5e1ebf1b8ea351f124e2ade5ad5b337904c1ac84d826babd9ae0a4",
+    "fixtures/dev/C3-L130000-11.json": "06f41af0d7ffb1075a5a0a095ca8a09ef244674ca613911550b67ca515626b94",
+    "fixtures/dev/C3-L2000-9.json": "89e7383539f6d57679a37b579b1f3b1552337a8c68322f5a7b9b23750424e0d3",
+    "fixtures/dev/C3-L30000-10.json": "41b6c9fc70f5025b7de346a037dea7830e54a83f9b63c1b4f93a3b3cb4768445",
+    "fixtures/generator.py": "0923181381f267c4a30388c37eb4e93e0f7785395be56daf8ccd7103265feb90",
+    "fixtures/templates/code-write-S.json": "14293f4fa1dac0c964278c7ebf060391ea2e35ca7f85fe720ba9b79e73f0d036",
+    "judges/calibration.py": "0a1e2823be6267db430d545dd13a0dc5fdf65d707699ba981c11d81657d2953c",
+    "judges/golden.json": "ff59779f74d33250711664bcfac33007943dfd84f2e5537434305eda82140a52",
+    "judges/llm_judge.py": "bcf915b71223be85a438b31caca878c10fe40a777d94e29fb143e3fb3d7fe433",
+    "judges/machine_cores.py": "d59d55da934b2c2a646f1f146019d6043a9fe8222ef4ae48ff2fa77783a02b66",
+    "llms.txt": "fe781bc0a657dada6b8ac488858c541120f24a13ab6f24e14c2d9794f8f20bd7",
+    "oracles/SAFETY-CELL.md": "d7e2607b6530783a14117413476a33e205f281e7b0df603ee05169355b2cd2d1",
+    "oracles/diff_allowlist.py": "f49562c3a70bfca80edde2dd5ff77a13f7310b981505f1a669bd436b570f3049",
+    "oracles/hidden_tests.py": "3dde39fd9276eff817d8e5b6193b500a51701fac606407e4855cfda9f3616179",
+    "oracles/safety_cell.py": "f35f0fcef33398fa383adb74ee841bb6aac0a03b968dde2aacff1fd5f52f11ef",
+    "research/W1-contamination-and-operations.md": "6c2a9270790f3c80aafa17eaa4cd003a428c733630519058c4ee441df06b1b7b",
+    "research/W2-statistics-and-oracles.md": "199636fc0706cac088d81435f8afdeba7614c04a14540590289c537d2de5485e",
+    "research/W3-judges-safety-decision.md": "fc3601edac9ea19b44a0c45b6fd65e25552ff09e95b0b410854f5d6f952cca50",
+    "tests/test_adversarial.py": "a1a6861618825011d53316748e3f550ccf6ecf500aa258f12f7bbff88b9511f3",
+    "tests/test_core.py": "781ab86db95c425f86c10f5525eafb4115d8acb4e4c4ac1f194c8adcfef67192"
+  },
+  "upstream": {
+    "commit": "525fa1e634013cfd37986568bd6f7c7d55cd9e44",
+    "license": "MIT",
+    "method": "git archive 525fa1e -- bench fixtures judges oracles research tests DESIGN.md README.md llms.txt (committed tree; working-tree-local edits NOT vendored)",
+    "name": "delegation-bench",
+    "urls": [
+      "https://github.com/KyaniteLabs/delegation-bench.git"
+    ],
+    "vendor": "KyaniteLabs"
+  }
+}
