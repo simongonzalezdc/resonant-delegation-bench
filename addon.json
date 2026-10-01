@@ -1,0 +1,140 @@
+{
+  "id": "addon.delegation-bench",
+  "name": "Delegation Bench",
+  "version": "0.1.0",
+  "author": "KyaniteLabs",
+  "category": "tool",
+  "sdkVersion": "0.1.0",
+  "description": "Which of your real jobs can you safely hand to a local model and walk away? Pre-registered 9-class delegation benchmark with certified confidence floors, blinded dual-judge, and a sabotage safety cell. Runs on your machine; results are plain files you own.",
+  "runtimeType": "local-service",
+  "surfaces": [],
+  "requestedCapabilities": [
+    {
+      "capability": "network",
+      "granted": false,
+      "scope": "self",
+      "revocationBehavior": "hard-stop"
+    }
+  ],
+  "provenance": {
+    "tier": "sideloaded-unverified",
+    "verificationState": "unverified",
+    "signed": false
+  },
+  "runtimeIsolation": {
+    "boundary": "host-mediated-service",
+    "supportsDegradedMode": true,
+    "requiresReviewedGrant": true
+  },
+  "grantPresets": [
+    {
+      "id": "delegation-bench-local",
+      "label": "Local benchmark runs",
+      "description": "Allow Delegation Bench to submit benchmark tasks to the local model endpoint you configure, and to run its built-in mock self-test.",
+      "grants": [
+        {
+          "capability": "network",
+          "granted": true,
+          "scope": "self",
+          "revocationBehavior": "hard-stop"
+        }
+      ]
+    }
+  ],
+  "providerRequirements": {
+    "sharedProfiles": [],
+    "supportsPrivateCredentials": false
+  },
+  "systemSlots": [],
+  "archiveIntegration": {
+    "readScopes": [],
+    "intakeWriteScopes": [],
+    "canRequestIngest": false,
+    "canWriteKnowledgePages": false
+  },
+  "health": {
+    "strategy": "http-json-status"
+  },
+  "service": {
+    "protocol": "http-json",
+    "entrypoint": "http://127.0.0.1:4890",
+    "healthCommand": "delegationbench.status"
+  },
+  "tools": [
+    {
+      "name": "delegationbench.status",
+      "description": "Report service version, busy state, available cell fixtures, and the most recent run id.",
+      "requiredCapabilities": ["network"],
+      "inputSchema": { "type": "object", "properties": {}, "additionalProperties": false },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": { "type": "boolean" },
+          "version": { "type": "string" },
+          "busy": { "type": "boolean" },
+          "cells": { "type": "array", "items": { "type": "string" } },
+          "last_run_id": { "type": ["string", "null"] }
+        }
+      },
+      "audit": { "logRequest": true, "logResult": true, "artifactTypes": ["log"] },
+      "requiresHumanApproval": false
+    },
+    {
+      "name": "delegationbench.run",
+      "description": "Start one benchmark job: a named fixture cell run n trials against your local model endpoint (mode http, loopback only) or the deterministic built-in mock (mode mock). Returns a run id immediately; poll delegationbench.results.",
+      "requiredCapabilities": ["network"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cell": { "type": "string", "maxLength": 64, "pattern": "^[A-Za-z0-9._-]+$", "description": "Fixture cell name from delegationbench.status" },
+          "mode": { "type": "string", "enum": ["mock", "http"] },
+          "endpoint_url": { "type": "string", "maxLength": 2048 },
+          "trials": { "type": "integer", "minimum": 1, "maximum": 30 },
+          "run_id": { "type": "string", "maxLength": 64, "pattern": "^[A-Za-z0-9._-]+$" }
+        },
+        "required": ["cell"],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": { "type": "string" },
+          "state": { "type": "string", "enum": ["running", "done", "failed"] }
+        }
+      },
+      "audit": { "logRequest": true, "logResult": true, "artifactTypes": ["log"] },
+      "requiresHumanApproval": false
+    },
+    {
+      "name": "delegationbench.results",
+      "description": "Fetch a run's decision verdict, certified card path, and trial rows (workspaces redacted).",
+      "requiredCapabilities": ["network"],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": { "type": "string", "maxLength": 64, "pattern": "^[A-Za-z0-9._-]+$" }
+        },
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": { "type": "string" },
+          "state": { "type": "string", "enum": ["running", "done", "failed"] },
+          "verdict": { "type": "array" },
+          "card_path": { "type": "string" },
+          "rows": { "type": "array" }
+        }
+      },
+      "audit": { "logRequest": true, "logResult": true, "artifactTypes": ["log"] },
+      "requiresHumanApproval": false
+    }
+  ],
+  "installHooks": {
+    "onInstall": "start-delegation-bench-service"
+  },
+  "compatibility": {
+    "shellVersion": "^0.1.0",
+    "platforms": ["macOS", "linux", "windows"]
+  }
+}
